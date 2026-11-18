@@ -1,0 +1,15 @@
+name: Check the avatar
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Default settings still draw exactly avatar.svg
+        run: |
+          python3 avatar.py --out /tmp/avatar.svg
+          cmp /tmp/avatar.svg avatar.svg
